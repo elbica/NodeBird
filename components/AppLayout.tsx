@@ -1,8 +1,11 @@
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 import { Col, Input, Menu, Row } from "antd"
+import { UserProfile } from "./UserProfile"
+import { LoginForm } from "./LoginForm"
 
 const AppLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+	const [isLogined, setIsLogined] = useState(false)
 	return (
 		<div>
 			<Menu mode="horizontal">
@@ -27,7 +30,7 @@ const AppLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
 			</Menu>
 			<Row>
 				<Col xs={24} md={6}>
-					왼쪽 메뉴
+					{isLogined ? <UserProfile setIsLogined={setIsLogined}/> : <LoginForm setIsLogined={setIsLogined}/>}
 				</Col>
 				<Col xs={24} md={12}>
 					{children}
